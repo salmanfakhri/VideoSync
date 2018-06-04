@@ -13,8 +13,13 @@ hi
   var socket = io.connect('http://localhost:8000');
   socket.emit('userConnected', data);
   
+
+  socket.on('printData', (data) => {
+    console.log(data);  
+  });
+
   window.onbeforeunload = function(){
-    socket.emit('userDisconnected', username);
+    socket.emit('userDisconnected', data);
   } 
  
 </script>
