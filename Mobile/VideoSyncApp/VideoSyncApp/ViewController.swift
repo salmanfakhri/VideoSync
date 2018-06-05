@@ -7,17 +7,34 @@
 //
 
 import UIKit
+import SocketIO
+import YouTubePlayer
 
 class ViewController: UIViewController {
-
+    
+    
+    
+    var ytp: YouTubePlayerView?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        SocketClientManager.sharedInstance.addHandlers()
+        
+        ytp = YouTubePlayerView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 400))
+        ytp?.playerVars["playsinline"] = "1" as AnyObject?
+        view.addSubview(ytp!)
+        
+        
+        
+        playVideoWithURL(urlString: "https://www.youtube.com/watch?v=3M_5oYU-IsU")
+        
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    func playVideoWithURL(urlString: String) {
+        if let url = URL(string: urlString), let player = ytp {
+//            player.loadVideoID("hHApdmoYsY8")
+        }
     }
 
 

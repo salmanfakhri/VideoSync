@@ -12,6 +12,8 @@
 		C9FD0A3920C6F62600830C59 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9FD0A3720C6F62600830C59 /* Main.storyboard */; };
 		C9FD0A3B20C6F62600830C59 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9FD0A3A20C6F62600830C59 /* Assets.xcassets */; };
 		C9FD0A3E20C6F62600830C59 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9FD0A3C20C6F62600830C59 /* LaunchScreen.storyboard */; };
+		C9FD0A4620C7087400830C59 /* SocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FD0A4520C7087400830C59 /* SocketManager.swift */; };
+		C9FD0A4820C70AEC00830C59 /* SocketDataModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FD0A4720C70AEC00830C59 /* SocketDataModels.swift */; };
 		CF74115A2FE039E3E43D4A90 /* Pods_VideoSyncApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5CE0C15D872747AF931B00B /* Pods_VideoSyncApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -25,6 +27,8 @@
 		C9FD0A3A20C6F62600830C59 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C9FD0A3D20C6F62600830C59 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C9FD0A3F20C6F62600830C59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C9FD0A4520C7087400830C59 /* SocketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketManager.swift; sourceTree = "<group>"; };
+		C9FD0A4720C70AEC00830C59 /* SocketDataModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketDataModels.swift; sourceTree = "<group>"; };
 		D5CE0C15D872747AF931B00B /* Pods_VideoSyncApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VideoSyncApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -84,6 +88,8 @@
 				C9FD0A3A20C6F62600830C59 /* Assets.xcassets */,
 				C9FD0A3C20C6F62600830C59 /* LaunchScreen.storyboard */,
 				C9FD0A3F20C6F62600830C59 /* Info.plist */,
+				C9FD0A4520C7087400830C59 /* SocketManager.swift */,
+				C9FD0A4720C70AEC00830C59 /* SocketDataModels.swift */,
 			);
 			path = VideoSyncApp;
 			sourceTree = "<group>";
@@ -223,7 +229,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9FD0A4820C70AEC00830C59 /* SocketDataModels.swift in Sources */,
 				C9FD0A3620C6F62600830C59 /* ViewController.swift in Sources */,
+				C9FD0A4620C7087400830C59 /* SocketManager.swift in Sources */,
 				C9FD0A3420C6F62600830C59 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -363,6 +371,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = C3YP8P798R;
 				INFOPLIST_FILE = VideoSyncApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.salmanfakhri.VideoSyncApp;
@@ -378,6 +387,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = C3YP8P798R;
 				INFOPLIST_FILE = VideoSyncApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.salmanfakhri.VideoSyncApp;

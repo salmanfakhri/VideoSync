@@ -12,8 +12,8 @@ app.get('/', function (req, res) {
   res.sendfile(__dirname + '/index.html');
 });
 
-io.on('connection', function (socket) { 
-  
+io.on('connection', function (socket) {
+
   socket.on('userConnected', (data) => {
     if (!roomExists(data.roomID)) {
       createRoom(data.roomID, data.username);
@@ -22,16 +22,21 @@ io.on('connection', function (socket) {
     }
     socket.join(data.roomID);
     console.log("New connection " + data.username + " connected to room " + data.roomID);
-    socket.in(data.roomID).emit('printData', tempDB);
+    // socket.emit('printData', tempDB);
+    io.sockets.in(data.roomID).emit('printData', tempDB);
+    console.log("connections: ");
+    console.log(tempDB);
   });
 
   socket.on('userDisconnected', (data) => {
     removeUserFromRoom(data.roomID, data.username);
-    socket.in(data.roomID).emit('printData', tempDB);
+    // socket.in(data.roomID).emit('printData', tempDB);
     socket.leave(data.roomID);
     console.log("user disconnected: " + data.username);
+    console.log("connections: ");
+    console.log(tempDB);
   });
- 
+
 });
 
 function roomExists(roomID) {
@@ -42,7 +47,7 @@ function createRoom(roomID, username) {
   tempDB[roomID] = {
     connections: [
       {name: username}
-    ] 
+    ]
   }
 }
 
@@ -56,7 +61,6 @@ function removeUserFromRoom(roomID, username) {
     if(connections[i].name === username) {
       connections.splice(i, 1);
       break;
-    } 
+    }
   }
 }
-
