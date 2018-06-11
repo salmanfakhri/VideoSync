@@ -1,11 +1,21 @@
 var app = require('express')();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
+var fs = require('fs');
+const ngrok = require('ngrok');
+
 
 var tempDB = {}
 
+
+
 server.listen(8000, function() {
-   console.log("Serving on port 8000");
+  console.log("Serving on port 8000");
+  (async function() {
+    const url = await ngrok.connect(8000);
+    console.log("Public url: " + url);
+    updateMobileURL(url);
+  })();
 });
 
 app.get('/', function (req, res) {
@@ -38,6 +48,17 @@ io.on('connection', function (socket) {
   });
 
 });
+
+
+
+function updateMobileURL(url) {
+  var data = fs.readFileSync('../Mobile/VideoSyncApp/url.json', 'utf-8');
+  //console.log("Old: " + data);
+  fs.writeFileSync('../Mobile/VideoSyncApp/url.json', '{"url":"' + url + '"}', 'utf-8');
+  var newData = fs.readFileSync('../Mobile/VideoSyncApp/url.json', 'utf-8');
+  //console.log("New: " + newData);
+  console.log('Updated mobile endpoint with new url');
+}
 
 function roomExists(roomID) {
   return tempDB.hasOwnProperty(roomID);

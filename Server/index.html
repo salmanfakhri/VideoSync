@@ -4,10 +4,9 @@ hi
 </body>
 <script src="/socket.io/socket.io.js"></script>
 <script>
-  var username = prompt("Please enter username");
   var roomId = prompt("Please enter a room id");
   var data = {
-    username: username,
+    username: "WebClient",
     roomID: roomId
   }
   var socket = io.connect('http://localhost:8000');

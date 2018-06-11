@@ -17,3 +17,7 @@ struct CustomData : SocketData {
         return ["username": username, "roomID": roomID]
     }
 }
+
+struct EndpointData: Codable {
+    let url: String
+}

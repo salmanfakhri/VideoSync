@@ -10,6 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.3",
+    "fs": "0.0.1-security",
+    "ngrok": "^3.0.1",
     "socket.io": "^2.1.1"
   }
 }

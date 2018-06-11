@@ -19,6 +19,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        SocketClientManager.sharedInstance.setUpSocketManger()
         SocketClientManager.sharedInstance.addHandlers()
         
         ytp = YouTubePlayerView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 400))
@@ -27,13 +28,15 @@ class ViewController: UIViewController {
         
         
         
-        playVideoWithURL(urlString: "https://www.youtube.com/watch?v=3M_5oYU-IsU")
+        playVideoWithURL(urlString: "https://www.youtube.com/watch?v=hHApdmoYsY8")
         
     }
     
     func playVideoWithURL(urlString: String) {
         if let url = URL(string: urlString), let player = ytp {
-//            player.loadVideoID("hHApdmoYsY8")
+            player.loadVideoURL(url)
+            while player.ready == false {}
+            player.play()
         }
     }
 

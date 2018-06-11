@@ -10,12 +10,13 @@ import Foundation
 import SocketIO
 
 class SocketClientManager {
-    let manager = SocketManager(socketURL: URL(string: "https://86bafa43.ngrok.io")!)
+    var manager: SocketManager?
     var socket: SocketIOClient?
     
     static let sharedInstance = SocketClientManager()
     
     func addHandlers() {
+        guard let manager = manager else { return }
         socket = manager.defaultSocket
         print("attempting to connect")
         socket?.connect()
@@ -29,7 +30,21 @@ class SocketClientManager {
             print("got printData event")
             print(data)
         })
-        
-        
+    }
+    
+    func setUpSocketManger() {
+        print("getting new socket url")
+        if let path = Bundle.main.path(forResource: "url", ofType: "json") {
+            do {
+                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+                let content = try JSONDecoder().decode(EndpointData.self, from: data)
+                if let url = URL(string: content.url) {
+                    manager = SocketManager(socketURL: url)
+                    print("got url")
+                }
+            } catch {
+                print("error getting local file")
+            }
+        }
     }
 }

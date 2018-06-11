@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C9A40F4620CF056B00E70747 /* url.json in Resources */ = {isa = PBXBuildFile; fileRef = C9A40F4520CF056B00E70747 /* url.json */; };
 		C9FD0A3420C6F62600830C59 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FD0A3320C6F62600830C59 /* AppDelegate.swift */; };
 		C9FD0A3620C6F62600830C59 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FD0A3520C6F62600830C59 /* ViewController.swift */; };
 		C9FD0A3920C6F62600830C59 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9FD0A3720C6F62600830C59 /* Main.storyboard */; };
@@ -20,6 +21,7 @@
 /* Begin PBXFileReference section */
 		24B9A491531A49776714E870 /* Pods-VideoSyncApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoSyncApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VideoSyncApp/Pods-VideoSyncApp.debug.xcconfig"; sourceTree = "<group>"; };
 		3915425DDCB28C9F2AD5B416 /* Pods-VideoSyncApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoSyncApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-VideoSyncApp/Pods-VideoSyncApp.release.xcconfig"; sourceTree = "<group>"; };
+		C9A40F4520CF056B00E70747 /* url.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = url.json; sourceTree = SOURCE_ROOT; };
 		C9FD0A3020C6F62600830C59 /* VideoSyncApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VideoSyncApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9FD0A3320C6F62600830C59 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C9FD0A3520C6F62600830C59 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -82,6 +84,7 @@
 		C9FD0A3220C6F62600830C59 /* VideoSyncApp */ = {
 			isa = PBXGroup;
 			children = (
+				C9A40F4520CF056B00E70747 /* url.json */,
 				C9FD0A3320C6F62600830C59 /* AppDelegate.swift */,
 				C9FD0A3520C6F62600830C59 /* ViewController.swift */,
 				C9FD0A3720C6F62600830C59 /* Main.storyboard */,
@@ -159,6 +162,7 @@
 				C9FD0A3E20C6F62600830C59 /* LaunchScreen.storyboard in Resources */,
 				C9FD0A3B20C6F62600830C59 /* Assets.xcassets in Resources */,
 				C9FD0A3920C6F62600830C59 /* Main.storyboard in Resources */,
+				C9A40F4620CF056B00E70747 /* url.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
