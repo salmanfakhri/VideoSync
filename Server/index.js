@@ -33,7 +33,7 @@ io.on('connection', function (socket) {
     socket.join(data.roomID);
     console.log("New connection " + data.username + " connected to room " + data.roomID);
     // socket.emit('printData', tempDB);
-    io.sockets.in(data.roomID).emit('printData', tempDB);
+    io.sockets.in(data.roomID).emit('printData', tempDB[data.roomID].connections);
     console.log("connections: ");
     console.log(tempDB);
   });

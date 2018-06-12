@@ -21,3 +21,7 @@ struct CustomData : SocketData {
 struct EndpointData: Codable {
     let url: String
 }
+
+struct Connection {
+    let name: String
+}
