@@ -20,20 +20,23 @@ class SocketClientManager {
     static let sharedInstance = SocketClientManager()
     var eventDelegate: SocketEventDelegate?
     
+    var currentUser: UserData?
+    
     func connectSocket() {
         guard let manager = manager else { return }
         socket = manager.defaultSocket
         print("attempting to connect")
         socket?.connect()
+        
+        socket?.on(clientEvent: .connect) {data, ack in
+            self.currentUser = UserData(username: "salamander1012", roomID: "504")
+            self.socket?.emit("userConnected", self.currentUser!)
+            print("socket connected")
+        }
     }
     
     func addHandlers() {
-        socket?.on(clientEvent: .connect) {data, ack in
-            self.socket?.emit("userConnected", CustomData(username: "salamander1012", roomID: "504"))
-            print("socket connected")
-        }
-        
-        socket?.on("printData", callback: { (data, awk) in
+        socket?.on("roomConnectionsData", callback: { (data, awk) in
             print("got printData event")
             var connections: [Connection] = []
             if let connectionsData = data[0] as? [[String:String]] {
@@ -60,6 +63,13 @@ class SocketClientManager {
             } catch {
                 print("error getting local file")
             }
+        }
+    }
+    
+    func handleDisconnection() {
+        if let user = currentUser {
+            self.socket?.emit("userDisconnected", user)
+            self.socket?.disconnect()
         }
     }
 }

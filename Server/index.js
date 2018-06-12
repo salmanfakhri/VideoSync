@@ -32,15 +32,14 @@ io.on('connection', function (socket) {
     }
     socket.join(data.roomID);
     console.log("New connection " + data.username + " connected to room " + data.roomID);
-    // socket.emit('printData', tempDB);
-    io.sockets.in(data.roomID).emit('printData', tempDB[data.roomID].connections);
+    io.sockets.in(data.roomID).emit('roomConnectionsData', tempDB[data.roomID].connections);
     console.log("connections: ");
     console.log(tempDB);
   });
 
   socket.on('userDisconnected', (data) => {
     removeUserFromRoom(data.roomID, data.username);
-    // socket.in(data.roomID).emit('printData', tempDB);
+    io.sockets.in(data.roomID).emit('roomConnectionsData', tempDB[data.roomID].connections);
     socket.leave(data.roomID);
     console.log("user disconnected: " + data.username);
     console.log("connections: ");

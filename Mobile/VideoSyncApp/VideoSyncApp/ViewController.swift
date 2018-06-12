@@ -17,7 +17,7 @@ class ViewController: UIViewController {
     var ytp: YouTubePlayerView?
     var usersTableView: UITableView?
     
-    var connections: [Connection] = [Connection(name: "salman")] {
+    var connections: [Connection] = [] {
         didSet {
             print("changed connections data")
             print(connections)
@@ -78,9 +78,9 @@ extension ViewController {
     }
     
     func setUpSocket() {
-        SocketClientManager.sharedInstance.setUpSocketManger()
-        SocketClientManager.sharedInstance.connectSocket()
-        SocketClientManager.sharedInstance.addHandlers()
+//        SocketClientManager.sharedInstance.setUpSocketManger()
+//        SocketClientManager.sharedInstance.connectSocket()
+//        SocketClientManager.sharedInstance.addHandlers()
         SocketClientManager.sharedInstance.eventDelegate = self
     }
     

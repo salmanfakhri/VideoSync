@@ -9,7 +9,7 @@
 import Foundation
 import SocketIO
 
-struct CustomData : SocketData {
+struct UserData : SocketData {
     let username: String
     let roomID: String
     
