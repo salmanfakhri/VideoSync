@@ -26,13 +26,10 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setUpUsersTableView()
         setUpSocket()
         setUpYoutubePlayer()
-        
         view.backgroundColor = .white
-        
         loadVideoWithURL(urlString: "https://www.youtube.com/watch?v=hHApdmoYsY8")
         
     }
@@ -85,7 +82,7 @@ extension ViewController {
     }
     
     func setUpYoutubePlayer() {
-        ytp = YouTubePlayerView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 350))
+        ytp = YouTubePlayerView(frame: CGRect(x: 0, y: 20, width: view.frame.width, height: 350))
         ytp?.playerVars["playsinline"] = "1" as AnyObject?
         view.addSubview(ytp!)
         ytp?.delegate = self
@@ -99,7 +96,7 @@ extension ViewController {
         usersTableView?.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(usersTableView!)
         let tableViewConstraints: [NSLayoutConstraint] = [
-            NSLayoutConstraint(item: usersTableView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1.0, constant: 350),
+            NSLayoutConstraint(item: usersTableView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1.0, constant: 370),
             NSLayoutConstraint(item: usersTableView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1.0, constant: 0),
             NSLayoutConstraint(item: usersTableView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1.0, constant: 0),
             NSLayoutConstraint(item: usersTableView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1.0, constant: 0)

@@ -52,6 +52,7 @@ class ConnectToRoomViewController: UIViewController {
         gradientLayer?.frame = self.view.bounds
         gradientLayer?.colors = [primary, secondary]
         view.layer.addSublayer(gradientLayer!)
+        navigationController?.isNavigationBarHidden = true
     }
     
     func setUpTitleLabel() {
@@ -105,7 +106,22 @@ class ConnectToRoomViewController: UIViewController {
         connectButton?.backgroundColor = UIColor(displayP3Red: 63/255, green: 50/255, blue: 106/255, alpha: 1.0)
         connectButton?.layer.cornerRadius = 25
         connectButton?.layer.masksToBounds = true
-        
+        connectButton?.addTarget(self, action: #selector(onConnectTap), for: .touchUpInside)
+    }
+    
+    @objc func onConnectTap() {
+        if roomIDField?.text != "" && userNameField?.text != "" {
+            print(roomIDField?.text)
+            print(userNameField?.text)
+            roomIDField?.text = ""
+            userNameField?.text = ""
+            navigationController?.present(ViewController(), animated: true, completion: {
+                print("presenting room view")
+                self.navigationController?.isNavigationBarHidden = false
+            })
+        } else {
+            print("is empty")
+        }
     }
     
 }
