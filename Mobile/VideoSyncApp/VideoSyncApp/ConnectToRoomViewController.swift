@@ -91,7 +91,7 @@ class ConnectToRoomViewController: UIViewController {
     }
     
     func setUpConnectButton() {
-        //36 32 56 dark purple
+        //36 32 56 very dark purple
         connectButton = UIButton()
         connectButton?.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(connectButton!)

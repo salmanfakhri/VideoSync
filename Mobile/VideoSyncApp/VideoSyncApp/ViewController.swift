@@ -13,11 +13,10 @@ import YouTubePlayer
 class ViewController: UIViewController {
     
     
-    
+    var loadView: UIView?
     var ytp: YouTubePlayerView?
     var usersTableView: UITableView?
-    
-    var connections: [Connection] = [] {
+    var connections: [Connection] = [Connection(name: "salman"), Connection(name: "salman"), Connection(name: "salman"), Connection(name: "salman"), Connection(name: "salman")] {
         didSet {
             print("changed connections data")
             print(connections)
@@ -26,11 +25,14 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         setUpUsersTableView()
         setUpSocket()
         setUpYoutubePlayer()
+
         view.backgroundColor = .white
-        loadVideoWithURL(urlString: "https://www.youtube.com/watch?v=hHApdmoYsY8")
+        //loadVideoWithURL(urlString: "https://www.youtube.com/watch?v=hHApdmoYsY8")
         
     }
 }
@@ -45,13 +47,39 @@ extension ViewController: YouTubePlayerDelegate {
 // MARK: UsersTableView Delegate
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellId")
-        cell?.textLabel?.text = connections[indexPath.row].name
-        return cell ?? UITableViewCell()
+        switch indexPath.section {
+        case 0:
+            if let cell = tableView.dequeueReusableCell(withIdentifier: HeaderCell.reuseIdentifier) as? HeaderCell {
+                return cell
+            }
+        default:
+            if let cell = tableView.dequeueReusableCell(withIdentifier: ConnectionCell.reuseIdentifier) as? ConnectionCell {
+                return cell
+            }
+        }
+        return UITableViewCell()
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return connections.count
+        switch section {
+        case 0:
+            return 1
+        default:
+            return connections.count
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch indexPath.section {
+        case 0:
+            return 100
+        default:
+            return 60
+        }
     }
 }
 
@@ -68,6 +96,9 @@ extension ViewController: SocketEventDelegate {
 
 // MARK: Page Setup
 extension ViewController {
+    
+    
+    
     func loadVideoWithURL(urlString: String) {
         if let url = URL(string: urlString), let player = ytp {
             player.loadVideoURL(url)
@@ -81,8 +112,15 @@ extension ViewController {
         SocketClientManager.sharedInstance.eventDelegate = self
     }
     
+    func setUpLoadView() {
+        loadView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 250))
+        loadView?.backgroundColor = UIColor(displayP3Red: 141/255, green: 134/255, blue: 201/255, alpha: 1.0)
+        let loadLabel = UILabel()
+        
+    }
+    
     func setUpYoutubePlayer() {
-        ytp = YouTubePlayerView(frame: CGRect(x: 0, y: 20, width: view.frame.width, height: 350))
+        ytp = YouTubePlayerView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 250))
         ytp?.playerVars["playsinline"] = "1" as AnyObject?
         view.addSubview(ytp!)
         ytp?.delegate = self
@@ -92,11 +130,12 @@ extension ViewController {
         usersTableView = UITableView()
         usersTableView?.delegate = self
         usersTableView?.dataSource = self
-        usersTableView?.register(UITableViewCell.self, forCellReuseIdentifier: "cellId")
+        usersTableView?.register(ConnectionCell.self, forCellReuseIdentifier: ConnectionCell.reuseIdentifier)
+        usersTableView?.register(HeaderCell.self, forCellReuseIdentifier: HeaderCell.reuseIdentifier)
         usersTableView?.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(usersTableView!)
         let tableViewConstraints: [NSLayoutConstraint] = [
-            NSLayoutConstraint(item: usersTableView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1.0, constant: 370),
+            NSLayoutConstraint(item: usersTableView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1.0, constant: 250),
             NSLayoutConstraint(item: usersTableView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1.0, constant: 0),
             NSLayoutConstraint(item: usersTableView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1.0, constant: 0),
             NSLayoutConstraint(item: usersTableView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1.0, constant: 0)
