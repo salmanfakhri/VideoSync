@@ -10,13 +10,14 @@
 		C988127D20D180E000DA1252 /* HeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C988127C20D180E000DA1252 /* HeaderCell.swift */; };
 		C988127F20D1893300DA1252 /* ConnectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C988127E20D1893300DA1252 /* ConnectionCell.swift */; };
 		C9A40F4620CF056B00E70747 /* url.json in Resources */ = {isa = PBXBuildFile; fileRef = C9A40F4520CF056B00E70747 /* url.json */; };
-		C9EB1A9020D0559900F9E860 /* ConnectToRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EB1A8F20D0559900F9E860 /* ConnectToRoomViewController.swift */; };
+		C9EB1A9020D0559900F9E860 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EB1A8F20D0559900F9E860 /* LoginViewController.swift */; };
 		C9FD0A3420C6F62600830C59 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FD0A3320C6F62600830C59 /* AppDelegate.swift */; };
 		C9FD0A3620C6F62600830C59 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FD0A3520C6F62600830C59 /* ViewController.swift */; };
 		C9FD0A3B20C6F62600830C59 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9FD0A3A20C6F62600830C59 /* Assets.xcassets */; };
 		C9FD0A3E20C6F62600830C59 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9FD0A3C20C6F62600830C59 /* LaunchScreen.storyboard */; };
 		C9FD0A4620C7087400830C59 /* SocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FD0A4520C7087400830C59 /* SocketManager.swift */; };
 		C9FD0A4820C70AEC00830C59 /* SocketDataModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FD0A4720C70AEC00830C59 /* SocketDataModels.swift */; };
+		C9FEB19B20D2FFF700D425B4 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FEB19A20D2FFF700D425B4 /* LoginView.swift */; };
 		CF74115A2FE039E3E43D4A90 /* Pods_VideoSyncApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5CE0C15D872747AF931B00B /* Pods_VideoSyncApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -26,7 +27,7 @@
 		C988127C20D180E000DA1252 /* HeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCell.swift; sourceTree = "<group>"; };
 		C988127E20D1893300DA1252 /* ConnectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionCell.swift; sourceTree = "<group>"; };
 		C9A40F4520CF056B00E70747 /* url.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = url.json; sourceTree = SOURCE_ROOT; };
-		C9EB1A8F20D0559900F9E860 /* ConnectToRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectToRoomViewController.swift; sourceTree = "<group>"; };
+		C9EB1A8F20D0559900F9E860 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C9FD0A3020C6F62600830C59 /* VideoSyncApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VideoSyncApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9FD0A3320C6F62600830C59 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C9FD0A3520C6F62600830C59 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -35,6 +36,7 @@
 		C9FD0A3F20C6F62600830C59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C9FD0A4520C7087400830C59 /* SocketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketManager.swift; sourceTree = "<group>"; };
 		C9FD0A4720C70AEC00830C59 /* SocketDataModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketDataModels.swift; sourceTree = "<group>"; };
+		C9FEB19A20D2FFF700D425B4 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		D5CE0C15D872747AF931B00B /* Pods_VideoSyncApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VideoSyncApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -88,19 +90,52 @@
 		C9FD0A3220C6F62600830C59 /* VideoSyncApp */ = {
 			isa = PBXGroup;
 			children = (
+				C9FEB19920D2FEC700D425B4 /* Manager */,
+				C9FEB19820D2FE4700D425B4 /* Controller */,
+				C9FEB19720D2FE2C00D425B4 /* View */,
+				C9FEB19620D2FE0F00D425B4 /* Model */,
 				C9A40F4520CF056B00E70747 /* url.json */,
 				C9FD0A3320C6F62600830C59 /* AppDelegate.swift */,
-				C9FD0A3520C6F62600830C59 /* ViewController.swift */,
 				C9FD0A3A20C6F62600830C59 /* Assets.xcassets */,
 				C9FD0A3C20C6F62600830C59 /* LaunchScreen.storyboard */,
 				C9FD0A3F20C6F62600830C59 /* Info.plist */,
-				C9FD0A4520C7087400830C59 /* SocketManager.swift */,
+			);
+			path = VideoSyncApp;
+			sourceTree = "<group>";
+		};
+		C9FEB19620D2FE0F00D425B4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
 				C9FD0A4720C70AEC00830C59 /* SocketDataModels.swift */,
-				C9EB1A8F20D0559900F9E860 /* ConnectToRoomViewController.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C9FEB19720D2FE2C00D425B4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C9FEB19A20D2FFF700D425B4 /* LoginView.swift */,
 				C988127C20D180E000DA1252 /* HeaderCell.swift */,
 				C988127E20D1893300DA1252 /* ConnectionCell.swift */,
 			);
-			path = VideoSyncApp;
+			path = View;
+			sourceTree = "<group>";
+		};
+		C9FEB19820D2FE4700D425B4 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				C9EB1A8F20D0559900F9E860 /* LoginViewController.swift */,
+				C9FD0A3520C6F62600830C59 /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		C9FEB19920D2FEC700D425B4 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				C9FD0A4520C7087400830C59 /* SocketManager.swift */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -238,12 +273,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C9EB1A9020D0559900F9E860 /* ConnectToRoomViewController.swift in Sources */,
+				C9EB1A9020D0559900F9E860 /* LoginViewController.swift in Sources */,
 				C9FD0A4820C70AEC00830C59 /* SocketDataModels.swift in Sources */,
 				C9FD0A3620C6F62600830C59 /* ViewController.swift in Sources */,
 				C9FD0A4620C7087400830C59 /* SocketManager.swift in Sources */,
 				C988127D20D180E000DA1252 /* HeaderCell.swift in Sources */,
 				C988127F20D1893300DA1252 /* ConnectionCell.swift in Sources */,
+				C9FEB19B20D2FFF700D425B4 /* LoginView.swift in Sources */,
 				C9FD0A3420C6F62600830C59 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
