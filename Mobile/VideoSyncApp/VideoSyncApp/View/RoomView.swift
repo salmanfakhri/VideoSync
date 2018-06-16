@@ -11,7 +11,7 @@ import YouTubePlayer
 
 class RoomView: UIView {
     
-    let playerHeight = 250
+    let playerHeight: CGFloat = 250
     
     var playerView: YouTubePlayerView = {
         let player = YouTubePlayerView()
@@ -38,7 +38,7 @@ class RoomView: UIView {
     }
     
     func setUpPlayerView() {
-        playerView = YouTubePlayerView(frame: CGRect(x: 0, y: 0, width: frame.width, height: 250))
+        playerView.frame = CGRect(x: 0, y: 0, width: frame.width, height: playerHeight)
         addSubview(playerView)
     }
     
