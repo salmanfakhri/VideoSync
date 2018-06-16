@@ -12,12 +12,6 @@ class LoginView: UIView {
     
     // MARK: Subviews
     
-//    var titleLabel: UILabel?
-//    var roomIDField: UITextField?
-//    var userNameField: UITextField?
-//    var connectButton: UIButton?
-//    var gradientLayer: CAGradientLayer?
-    
     let gradientLayer: CAGradientLayer = {
         //114 90 193 dark purple
         //141 134 201 light purple

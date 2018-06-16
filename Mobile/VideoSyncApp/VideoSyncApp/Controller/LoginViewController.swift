@@ -48,7 +48,7 @@ class LoginViewController: UIViewController {
             print(userNameField.text)
             roomIDField.text = ""
             userNameField.text = ""
-            navigationController?.present(ViewController(), animated: true, completion: {
+            navigationController?.present(RoomViewController(), animated: true, completion: {
                 print("presenting room view")
                 self.navigationController?.isNavigationBarHidden = false
             })
