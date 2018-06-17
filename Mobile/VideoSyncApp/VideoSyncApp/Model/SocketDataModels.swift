@@ -25,3 +25,10 @@ struct EndpointData: Codable {
 struct Connection {
     let name: String
 }
+
+struct SampleVideo {
+    let thumbnail: UIImage
+    let title: String
+    let creator: String
+    let url: String
+}

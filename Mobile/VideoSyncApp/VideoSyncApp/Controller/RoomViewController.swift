@@ -15,7 +15,9 @@ class RoomViewController: UIViewController {
     unowned var roomView: RoomView { return self.view as! RoomView }
     unowned var playerView: YouTubePlayerView { return roomView.playerView }
     unowned var usersTableView: UITableView { return roomView.usersTableView }
-
+    
+    lazy var videoSelectionLauncher = VideoSelectionLauncher()
+    
     var connections: [Connection] = [Connection(name: "salman"), Connection(name: "salman"), Connection(name: "salman"), Connection(name: "salman"), Connection(name: "salman")] {
         didSet {
             print("changed connections data")
@@ -27,6 +29,7 @@ class RoomViewController: UIViewController {
         super.viewDidLoad()
         view = RoomView(frame: view.frame)
         usersTableView.dataSource = self
+        setUpPlayerView()
         setUpSocket()
         view.backgroundColor = .white
         loadVideoWithURL(urlString: "https://www.youtube.com/watch?v=hHApdmoYsY8")
@@ -46,6 +49,7 @@ extension RoomViewController: UITableViewDataSource {
         switch indexPath.section {
         case 0:
             if let cell = tableView.dequeueReusableCell(withIdentifier: HeaderCell.reuseIdentifier) as? HeaderCell {
+                cell.delegate = self
                 return cell
             }
         default:
@@ -89,12 +93,24 @@ extension RoomViewController: SocketEventDelegate {
     }
 }
 
+// MARK: HeaderCellDelegate
+
+extension RoomViewController: HeaderCellDelegate {
+    func didSelectVideoButton() {
+        videoSelectionLauncher.showSelectionView()
+    }
+}
+
 // MARK: Page Setup
 extension RoomViewController {
     func loadVideoWithURL(urlString: String) {
         if let url = URL(string: urlString) {
             playerView.loadVideoURL(url)
         }
+    }
+    
+    func setUpPlayerView() {
+        playerView.playerVars["playsinline"] = "1" as AnyObject?
     }
     
     func setUpSocket() {

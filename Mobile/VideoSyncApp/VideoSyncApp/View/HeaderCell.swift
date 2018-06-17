@@ -8,6 +8,12 @@
 
 import UIKit
 
+// MARK: HeaderButtonsProtocol
+protocol HeaderCellDelegate : class {
+    func didSelectVideoButton()
+}
+
+
 // MARK: Main
 class HeaderCell: UITableViewCell {
     
@@ -17,6 +23,8 @@ class HeaderCell: UITableViewCell {
     var infoLabel: UILabel?
     var leaveButton: UIButton?
     var addVideoButton: UIButton?
+    
+    weak var delegate: HeaderCellDelegate?
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -96,6 +104,10 @@ extension HeaderCell {
         addVideoButton?.backgroundColor = primary
         addVideoButton?.layer.cornerRadius = 20
         addVideoButton?.layer.masksToBounds = true
-        //        connectButton?.addTarget(self, action: #selector(onConnectTap), for: .touchUpInside)
+        addVideoButton?.addTarget(self, action: #selector(onVideoTap), for: .touchUpInside)
+    }
+    
+    @objc func onVideoTap() {
+        delegate?.didSelectVideoButton()
     }
 }
