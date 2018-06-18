@@ -22,11 +22,8 @@ class VideoSelectionLauncher: NSObject {
         return data
     }()
     
-    
-    
     let selectionView: VideoSelectionView = {
         let view = VideoSelectionView()
-        
         view.backgroundColor = .white
         return view
     }()
@@ -48,6 +45,7 @@ class VideoSelectionLauncher: NSObject {
     override init() {
         super.init()
         selectionView.closeButton.addTarget(self, action: #selector(didTapClose), for: .touchUpInside)
+        selectionView.videosTableView.dataSource = self
     }
     
     @objc func didTapClose() {
@@ -56,5 +54,21 @@ class VideoSelectionLauncher: NSObject {
         }) { (bool) in
             self.selectionView.removeFromSuperview()
         }
+    }
+}
+
+// MARK: VideoTableView DataSource
+
+extension VideoSelectionLauncher: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return videos.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: VideoCell.reuseIdentifier) as? VideoCell {
+            cell.setUpCell(video: videos[indexPath.row])
+            return cell
+        }
+        return UITableViewCell()
     }
 }

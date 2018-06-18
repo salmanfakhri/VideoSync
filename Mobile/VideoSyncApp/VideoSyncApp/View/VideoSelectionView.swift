@@ -43,6 +43,13 @@ class VideoSelectionView: UIView {
         return field
     }()
     
+    let videosTableView: UITableView = {
+        let tableView = UITableView()
+        tableView.register(VideoCell.self, forCellReuseIdentifier: VideoCell.reuseIdentifier)
+        tableView.separatorStyle = .none
+        return tableView
+    }()
+    
     func closeButtonConstraints() {
         closeButton.translatesAutoresizingMaskIntoConstraints = false
         addSubview(closeButton)
@@ -70,11 +77,22 @@ class VideoSelectionView: UIView {
         urlField.heightAnchor.constraint(equalToConstant: 40).isActive = true
     }
     
+    func videosTableViewConstraints() {
+        videosTableView.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(videosTableView)
+        videosTableView.topAnchor.constraint(equalTo: urlField.bottomAnchor).isActive = true
+        videosTableView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
+        videosTableView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
+        videosTableView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         closeButtonConstraints()
         watchButtonConstraints()
         urlFieldConstraints()
+        videosTableViewConstraints()
+        videosTableView.delegate = self
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -83,8 +101,13 @@ class VideoSelectionView: UIView {
     
 }
 
+extension VideoSelectionView: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 120
+    }
+}
+
 class VideoURLField: UITextField {
-    
     
     override func textRect(forBounds bounds: CGRect) -> CGRect {
         return UIEdgeInsetsInsetRect(bounds, UIEdgeInsetsMake(0, 13, 0, 10))

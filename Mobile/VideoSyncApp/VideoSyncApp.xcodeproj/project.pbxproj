@@ -10,6 +10,7 @@
 		C9515E6920D4DB2100E00B36 /* RoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9515E6820D4DB2100E00B36 /* RoomView.swift */; };
 		C9571E7C20D6F0EF007C17D8 /* VideoSelectionLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9571E7B20D6F0EF007C17D8 /* VideoSelectionLauncher.swift */; };
 		C9571E7E20D6FA51007C17D8 /* VideoSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9571E7D20D6FA51007C17D8 /* VideoSelectionView.swift */; };
+		C9571E8020D72999007C17D8 /* VideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9571E7F20D72999007C17D8 /* VideoCell.swift */; };
 		C988127D20D180E000DA1252 /* HeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C988127C20D180E000DA1252 /* HeaderCell.swift */; };
 		C988127F20D1893300DA1252 /* ConnectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C988127E20D1893300DA1252 /* ConnectionCell.swift */; };
 		C9A40F4620CF056B00E70747 /* url.json in Resources */ = {isa = PBXBuildFile; fileRef = C9A40F4520CF056B00E70747 /* url.json */; };
@@ -30,6 +31,7 @@
 		C9515E6820D4DB2100E00B36 /* RoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomView.swift; sourceTree = "<group>"; };
 		C9571E7B20D6F0EF007C17D8 /* VideoSelectionLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoSelectionLauncher.swift; sourceTree = "<group>"; };
 		C9571E7D20D6FA51007C17D8 /* VideoSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoSelectionView.swift; sourceTree = "<group>"; };
+		C9571E7F20D72999007C17D8 /* VideoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCell.swift; sourceTree = "<group>"; };
 		C988127C20D180E000DA1252 /* HeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCell.swift; sourceTree = "<group>"; };
 		C988127E20D1893300DA1252 /* ConnectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionCell.swift; sourceTree = "<group>"; };
 		C9A40F4520CF056B00E70747 /* url.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = url.json; sourceTree = SOURCE_ROOT; };
@@ -125,6 +127,7 @@
 				C988127C20D180E000DA1252 /* HeaderCell.swift */,
 				C988127E20D1893300DA1252 /* ConnectionCell.swift */,
 				C9571E7D20D6FA51007C17D8 /* VideoSelectionView.swift */,
+				C9571E7F20D72999007C17D8 /* VideoCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -287,6 +290,7 @@
 				C9FD0A4820C70AEC00830C59 /* SocketDataModels.swift in Sources */,
 				C9FD0A3620C6F62600830C59 /* RoomViewController.swift in Sources */,
 				C9571E7C20D6F0EF007C17D8 /* VideoSelectionLauncher.swift in Sources */,
+				C9571E8020D72999007C17D8 /* VideoCell.swift in Sources */,
 				C9571E7E20D6FA51007C17D8 /* VideoSelectionView.swift in Sources */,
 				C9FD0A4620C7087400830C59 /* SocketManager.swift in Sources */,
 				C988127D20D180E000DA1252 /* HeaderCell.swift in Sources */,
