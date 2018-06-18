@@ -18,7 +18,9 @@ class RoomViewController: UIViewController {
     
     lazy var videoSelectionLauncher = VideoSelectionLauncher()
     
-    var connections: [Connection] = [Connection(name: "salman"), Connection(name: "salman"), Connection(name: "salman"), Connection(name: "salman"), Connection(name: "salman")] {
+    var roomName: String?
+    
+    var connections: [Connection] = [] {
         didSet {
             print("changed connections data")
             print(connections)
@@ -29,6 +31,7 @@ class RoomViewController: UIViewController {
         super.viewDidLoad()
         view = RoomView(frame: view.frame)
         usersTableView.dataSource = self
+        videoSelectionLauncher.delegate = self
         setUpPlayerView()
         setUpSocket()
         view.backgroundColor = .white
@@ -50,10 +53,15 @@ extension RoomViewController: UITableViewDataSource {
         case 0:
             if let cell = tableView.dequeueReusableCell(withIdentifier: HeaderCell.reuseIdentifier) as? HeaderCell {
                 cell.delegate = self
+                if let name = roomName {
+                    cell.titleLabel?.text = name
+                }
+                cell.infoLabel?.text = "\(connections.count) connections present"
                 return cell
             }
         default:
             if let cell = tableView.dequeueReusableCell(withIdentifier: ConnectionCell.reuseIdentifier) as? ConnectionCell {
+                cell.titleLabel?.text = connections[indexPath.row].name
                 return cell
             }
         }
@@ -85,6 +93,10 @@ extension RoomViewController: UITableViewDataSource {
 
 // MARK: Socket Delegate
 extension RoomViewController: SocketEventDelegate {
+    func receivedLoadVideoEvent(url: String) {
+        loadVideoWithURL(urlString: url)
+    }
+    
     func didGetConnectionsData(connections: [Connection]) {
         self.connections = connections
         DispatchQueue.main.async {
@@ -101,6 +113,16 @@ extension RoomViewController: HeaderCellDelegate {
     }
 }
 
+// MARK: VideoSelectionDelegate
+
+extension RoomViewController: VideoSelectionDelegate {
+    func didSelectVideoWith(url: String) {
+        SocketClientManager.sharedInstance.pushVideoWith(url: url)
+    }
+    
+    
+}
+
 // MARK: Page Setup
 extension RoomViewController {
     func loadVideoWithURL(urlString: String) {
@@ -114,9 +136,6 @@ extension RoomViewController {
     }
     
     func setUpSocket() {
-//        SocketClientManager.sharedInstance.setUpSocketManger()
-//        SocketClientManager.sharedInstance.connectSocket()
-//        SocketClientManager.sharedInstance.addHandlers()
         SocketClientManager.sharedInstance.eventDelegate = self
     }
 }

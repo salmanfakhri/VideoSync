@@ -46,6 +46,11 @@ io.on('connection', function (socket) {
     console.log(tempDB);
   });
 
+  socket.on('pushVideo', (data) => {
+    console.log("got pushVideo event");
+    io.sockets.in(data.roomID).emit('loadVideo', {url: data.url});
+  });
+
 });
 
 

@@ -11,6 +11,7 @@ import SocketIO
 
 protocol SocketEventDelegate {
     func didGetConnectionsData(connections: [Connection])
+    func receivedLoadVideoEvent(url: String)
 }
 
 class SocketClientManager {
@@ -22,22 +23,23 @@ class SocketClientManager {
     
     var currentUser: UserData?
     
-    func connectSocket() {
+    func connectSocket(username: String, roomID: String, completion: @escaping () -> ()) {
         guard let manager = manager else { return }
         socket = manager.defaultSocket
         print("attempting to connect")
         socket?.connect()
         
         socket?.on(clientEvent: .connect) {data, ack in
-            self.currentUser = UserData(username: "salamander1012", roomID: "504")
+            self.currentUser = UserData(username: username, roomID: roomID)
             self.socket?.emit("userConnected", self.currentUser!)
             print("socket connected")
+            completion()
         }
     }
     
     func addHandlers() {
         socket?.on("roomConnectionsData", callback: { (data, awk) in
-            print("got printData event")
+            print("got roomConnectionsData event")
             var connections: [Connection] = []
             if let connectionsData = data[0] as? [[String:String]] {
                 connectionsData.forEach({
@@ -48,6 +50,15 @@ class SocketClientManager {
                 self.eventDelegate?.didGetConnectionsData(connections: connections)
             } else {
                 print("Unable to decode connectionsData")
+            }
+        })
+        
+        socket?.on("loadVideo", callback: { (data, awk) in
+            print("got loadVideo event")
+            if let urlData = data[0] as? [String: String] {
+                if let url = urlData["url"] {
+                    self.eventDelegate?.receivedLoadVideoEvent(url: url)
+                }
             }
         })
     }
@@ -71,5 +82,11 @@ class SocketClientManager {
             self.socket?.emit("userDisconnected", user)
             self.socket?.disconnect()
         }
+    }
+    
+    func pushVideoWith(url: String) {
+        guard let roomID = currentUser?.roomID else { return }
+        let data = VideoData(url: url, roomID: roomID)
+        self.socket?.emit("pushVideo", data)
     }
 }

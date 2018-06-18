@@ -92,7 +92,6 @@ class VideoSelectionView: UIView {
         watchButtonConstraints()
         urlFieldConstraints()
         videosTableViewConstraints()
-        videosTableView.delegate = self
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -101,11 +100,7 @@ class VideoSelectionView: UIView {
     
 }
 
-extension VideoSelectionView: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 120
-    }
-}
+
 
 class VideoURLField: UITextField {
     

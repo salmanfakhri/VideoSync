@@ -44,13 +44,16 @@ class LoginViewController: UIViewController {
     
     @objc func onConnectTap() {
         if roomIDField.text != "" && userNameField.text != "" {
-            print(roomIDField.text)
-            print(userNameField.text)
-            roomIDField.text = ""
-            userNameField.text = ""
-            navigationController?.present(RoomViewController(), animated: true, completion: {
-                print("presenting room view")
-                self.navigationController?.isNavigationBarHidden = false
+            SocketClientManager.sharedInstance.connectSocket(username: userNameField.text!, roomID: roomIDField.text!, completion: {
+                let roomVC = RoomViewController()
+                roomVC.roomName = self.roomIDField.text!
+                self.navigationController?.present(roomVC, animated: true, completion: {
+                    print("presenting room view")
+                    self.navigationController?.isNavigationBarHidden = false
+                })
+                SocketClientManager.sharedInstance.addHandlers()
+                self.roomIDField.text = ""
+                self.userNameField.text = ""
             })
         } else {
             print("is empty")

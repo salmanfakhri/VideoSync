@@ -9,6 +9,10 @@
 import Foundation
 import UIKit
 
+protocol VideoSelectionDelegate : class {
+    func didSelectVideoWith(url: String)
+}
+
 class VideoSelectionLauncher: NSObject {
     
     let videos: [SampleVideo] = {
@@ -30,6 +34,8 @@ class VideoSelectionLauncher: NSObject {
     
     let spaceFromTop: CGFloat = 250
     
+    weak var delegate: VideoSelectionDelegate?
+    
     func showSelectionView() {
         if let window = UIApplication.shared.keyWindow {
             window.addSubview(selectionView)
@@ -44,11 +50,25 @@ class VideoSelectionLauncher: NSObject {
     
     override init() {
         super.init()
-        selectionView.closeButton.addTarget(self, action: #selector(didTapClose), for: .touchUpInside)
+        setUpSelectionViewActions()
         selectionView.videosTableView.dataSource = self
+        selectionView.videosTableView.delegate = self
+    }
+    
+    func setUpSelectionViewActions() {
+        selectionView.closeButton.addTarget(self, action: #selector(didTapClose), for: .touchUpInside)
+        selectionView.watchButton.addTarget(self, action: #selector(didTapWatch), for: .touchUpInside)
     }
     
     @objc func didTapClose() {
+        closeView()
+    }
+    
+    @objc func didTapWatch() {
+        
+    }
+    
+    func closeView() {
         UIView.animate(withDuration: 0.1, animations: {
             self.selectionView.alpha = 0
         }) { (bool) in
@@ -59,7 +79,7 @@ class VideoSelectionLauncher: NSObject {
 
 // MARK: VideoTableView DataSource
 
-extension VideoSelectionLauncher: UITableViewDataSource {
+extension VideoSelectionLauncher: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return videos.count
     }
@@ -71,4 +91,16 @@ extension VideoSelectionLauncher: UITableViewDataSource {
         }
         return UITableViewCell()
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let url = videos[indexPath.row].url
+        delegate?.didSelectVideoWith(url: url)
+        closeView()
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 120
+    }
+    
+    
 }
