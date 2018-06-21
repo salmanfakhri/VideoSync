@@ -51,6 +51,12 @@ io.on('connection', function (socket) {
     io.sockets.in(data.roomID).emit('loadVideo', {url: data.url});
   });
 
+  socket.on('playerStateChanged', (event) => {
+    var time = Math.round(Number(event.time)*100)/100
+    console.log("state changed: " + event.type + " " + time);
+    socket.broadcast.to(event.roomID).emit('playerEvent', {type: event.type, time: time});
+  });
+
 });
 
 
