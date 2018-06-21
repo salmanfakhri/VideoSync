@@ -26,6 +26,15 @@ struct VideoData : SocketData {
     }
 }
 
+struct EventData: SocketData {
+    let type: String
+    let time: String
+    let roomID: String
+    func socketRepresentation() -> SocketData {
+        return ["type": type, "time": time, "roomID": roomID]
+    }
+}
+
 struct EndpointData: Codable {
     let url: String
 }

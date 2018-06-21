@@ -43,6 +43,8 @@ class RoomViewController: UIViewController {
 extension RoomViewController: YouTubePlayerDelegate {
     func playerStateChanged(_ videoPlayer: YouTubePlayerView, playerState: YouTubePlayerState) {
         print(playerState)
+        let time = playerView.getCurrentTime() ?? "notime"
+        SocketClientManager.sharedInstance.pushEvent(state: playerState, time: time)
     }
 }
 
@@ -93,6 +95,16 @@ extension RoomViewController: UITableViewDataSource {
 
 // MARK: Socket Delegate
 extension RoomViewController: SocketEventDelegate {
+    // TODO: fix bug cyclic bug caused by state change 
+    func receivedPauseEvent(forTime time: Float) {
+        playerView.pause()
+    }
+    
+    func receivedPlayEvent(forTime time: Float) {
+        playerView.seekTo(time, seekAhead: true)
+        playerView.play()
+    }
+    
     func receivedLoadVideoEvent(url: String) {
         loadVideoWithURL(urlString: url)
     }
@@ -133,6 +145,7 @@ extension RoomViewController {
     
     func setUpPlayerView() {
         playerView.playerVars["playsinline"] = "1" as AnyObject?
+        playerView.delegate = self
     }
     
     func setUpSocket() {

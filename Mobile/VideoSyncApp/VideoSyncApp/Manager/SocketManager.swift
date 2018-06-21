@@ -8,10 +8,13 @@
 
 import Foundation
 import SocketIO
+import YouTubePlayer
 
 protocol SocketEventDelegate {
     func didGetConnectionsData(connections: [Connection])
     func receivedLoadVideoEvent(url: String)
+    func receivedPauseEvent(forTime time: Float)
+    func receivedPlayEvent(forTime time: Float)
 }
 
 class SocketClientManager {
@@ -61,6 +64,16 @@ class SocketClientManager {
                 }
             }
         })
+        
+        socket?.on("playerEvent", callback: { (data, awk) in
+            print("got player event")
+            if let eventData = data[0] as? [String: Any] {
+                guard let type = eventData["type"] as? String else { return }
+                guard let time = eventData["time"] as? Float else { return }
+                self.handleEvent(type: type, time: time)
+                print(eventData)
+            }
+        })
     }
     
     func setUpSocketManger() {
@@ -84,9 +97,35 @@ class SocketClientManager {
         }
     }
     
+    func handleEvent(type: String, time: Float) {
+        switch type {
+        case YouTubePlayerState.Paused.rawValue:
+            print("event: paused")
+            eventDelegate?.receivedPauseEvent(forTime: time)
+        case YouTubePlayerState.Playing.rawValue:
+            print("event: playing")
+            eventDelegate?.receivedPlayEvent(forTime: time)
+        case YouTubePlayerState.Buffering.rawValue:
+            print("event: Buffering")
+        case YouTubePlayerState.Ended.rawValue:
+            print("event: ended")
+        case YouTubePlayerState.Unstarted.rawValue:
+            print("event: unstarted")
+        default:
+            print("event: unknown event")
+        }
+    }
+    
     func pushVideoWith(url: String) {
         guard let roomID = currentUser?.roomID else { return }
         let data = VideoData(url: url, roomID: roomID)
         self.socket?.emit("pushVideo", data)
     }
+    
+    func pushEvent(state: YouTubePlayerState, time: String) {
+        guard let roomID = currentUser?.roomID else { return }
+        let data = EventData(type: state.rawValue, time: time, roomID: roomID)
+        self.socket?.emit("playerStateChanged", data)
+    }
+    
 }
