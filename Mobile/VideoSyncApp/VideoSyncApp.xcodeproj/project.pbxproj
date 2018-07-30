@@ -162,7 +162,6 @@
 				C9FD0A2D20C6F62600830C59 /* Frameworks */,
 				C9FD0A2E20C6F62600830C59 /* Resources */,
 				B7F6829DC84D55FA2A681751 /* [CP] Embed Pods Frameworks */,
-				DD5B8D87F11C7389DE01419C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -261,21 +260,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VideoSyncApp/Pods-VideoSyncApp-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DD5B8D87F11C7389DE01419C /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VideoSyncApp/Pods-VideoSyncApp-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

@@ -1,6 +1,8 @@
 # VideoSync
 An app for synchronized youtube video playback.
 
+![showcase](showcase.png) 
+
 ## Server Dependencies
 
 [Node.js](https://nodejs.org/en/)  
