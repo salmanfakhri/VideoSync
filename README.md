@@ -4,18 +4,19 @@ An app for synchronized youtube video playback.
 ![showcase](showcase.png) 
 
 ## Getting Started
-These instructions will get a copy of the project up and running on your local machine
+These instructions will get a copy of the project up and running on your local machine.
 
-###Prerequisites
+### Prerequisites
 Make sure you have Xcode as well as the following dependencies installed before cloning the repo
 
 - Cocoapods
 - Node.js
 
-You can install Cocoapods using the following command
+You can install Cocoapods using the following command  
 `sudo gem install cocoapods`
 
-To install Node go [here][https://nodejs.org/en/] and follow the download instructions.
+To install Node go [here][1] and follow the download instructions.
+[1]: https://nodejs.org/en/ "Title"
 
 ## Server Dependencies
 
