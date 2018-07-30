@@ -29,7 +29,13 @@ Next navigate to the Server directory and install the node dependencies
 
 Next navigate to the VideoSyncApp directory inside Mobile and install the pods  
 
-'pod install'
+`pod install`  
+
+Cool you now have everything installed. Before we run the app in xcode make sure to start up the server. To do this navigate back to the Server directory use the following command  
+
+`node index.js`
+
+Finally open the VideoSyncApp.xcworkspace file in xcode and run the project.
 
 ## Server Dependencies
 
